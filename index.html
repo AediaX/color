@@ -129,7 +129,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:0}
 
 /* palette strip */
 .strip{
-  display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(8px,2vw,18px);
+  display:grid;grid-template-columns:repeat(8,1fr);gap:clamp(8px,2vw,18px);
   padding:clamp(14px,3vw,24px);
 }
 .dot{
@@ -212,10 +212,10 @@ footer{
     <div class="head-text">
       <span class="eyebrow">House color scheme</span>
       <h1>Wall Color Palette</h1>
-      <p class="lede">Seven colors for the walls and roof. Each one is listed in HEX, RGB, HSL and CMYK. Tap Copy to take a value.</p>
+      <p class="lede">Eight colors for the walls and roof. Each one is listed in HEX, RGB, HSL and CMYK. Tap Copy to take a value.</p>
     </div>
     <div class="head-tools">
-      <span class="stat pit"><b>7</b> colors</span>
+      <span class="stat pit"><b>8</b> colors</span>
       <span class="stat pit"><b>4</b> formats</span>
       <button class="btn" id="theme" type="button" aria-label="Switch light or dark theme">Theme</button>
     </div>
@@ -237,7 +237,8 @@ var COLORS=[
  {name:"Deep Royal Bangle Purple",hex:"#59156C",rgb:"89, 21, 108",hsl:"287, 67%, 25%",cmyk:"18, 81, 0, 58"},
  {name:"Deep Teal Green",hex:"#1B796F",rgb:"27, 121, 111",hsl:"174, 64%, 29%",cmyk:"78, 0, 8, 53"},
  {name:"Vibrant Leaf Green",hex:"#287D46",rgb:"40, 125, 70",hsl:"141, 52%, 32%",cmyk:"68, 0, 44, 51"},
- {name:"Glowing Lavender White",hex:"#F8F5FC",rgb:"248, 245, 252",hsl:"266, 54%, 97%",cmyk:"2, 3, 0, 1",note:"A very light white with a subtle purple undertone."}
+ {name:"Glowing Lavender White",hex:"#F8F5FC",rgb:"248, 245, 252",hsl:"266, 54%, 97%",cmyk:"2, 3, 0, 1",note:"A very light white with a subtle purple undertone."},
+ {name:"Soft Blush Pink",hex:"#FACBDF",rgb:"250, 203, 223",hsl:"334, 82%, 89%",cmyk:"0, 19, 11, 2"}
 ];
 var FORMATS=[["HEX","hex",function(c){return c.hex}],["RGB","rgb",function(c){return "rgb("+c.rgb+")"}],["HSL","hsl",function(c){return "hsl("+c.hsl+")"}],["CMYK","cmyk",function(c){return "cmyk("+c.cmyk+")"}]];
 
