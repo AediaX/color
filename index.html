@@ -1,0 +1,306 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Wall Color Palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700&family=DM+Mono:wght@500&display=swap">
+<style>
+/* Layout: soft clay header, a pressed palette strip, then a responsive grid of inflated color cards. Same 7 wall colors in every theme. */
+:root{
+  --bg:#ECE7F5;
+  --surface:#F5F1FB;
+  --fg:#061124;
+  --muted:#5A6079;
+  --accent:#59156C;
+  --accent-ink:#F8F5FC;
+  --sh-d:rgba(84,58,128,.22);
+  --sh-l:rgba(255,255,255,.95);
+  --in-d:rgba(84,58,128,.10);
+  --in-l:rgba(255,255,255,.85);
+  --pit-d:rgba(84,58,128,.20);
+  --pit-l:rgba(255,255,255,.90);
+  --f-display:'Fredoka','Nunito',ui-rounded,system-ui,sans-serif;
+  --f-body:'Nunito',ui-rounded,system-ui,sans-serif;
+  --f-mono:'DM Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1226;
+    --surface:#121D38;
+    --fg:#F1EDF8;
+    --muted:#9EA7C2;
+    --accent:#C58BDD;
+    --accent-ink:#1A0A24;
+    --sh-d:rgba(0,0,0,.60);
+    --sh-l:rgba(80,100,160,.16);
+    --in-d:rgba(0,0,0,.35);
+    --in-l:rgba(255,255,255,.05);
+    --pit-d:rgba(0,0,0,.55);
+    --pit-l:rgba(110,130,190,.14);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1226;
+  --surface:#121D38;
+  --fg:#F1EDF8;
+  --muted:#9EA7C2;
+  --accent:#C58BDD;
+  --accent-ink:#1A0A24;
+  --sh-d:rgba(0,0,0,.60);
+  --sh-l:rgba(80,100,160,.16);
+  --in-d:rgba(0,0,0,.35);
+  --in-l:rgba(255,255,255,.05);
+  --pit-d:rgba(0,0,0,.55);
+  --pit-l:rgba(110,130,190,.14);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.5;
+  padding-inline:clamp(16px,4vw,40px);
+  padding-block:clamp(24px,5vw,56px);
+}
+.wrap{max-width:1120px;margin-inline:auto;display:flex;flex-direction:column;gap:clamp(24px,4vw,40px)}
+
+/* clay primitives */
+.clay{
+  background:var(--surface);
+  border-radius:32px;
+  box-shadow:
+    14px 14px 30px var(--sh-d),
+    -10px -10px 24px var(--sh-l),
+    inset -5px -5px 12px var(--in-d),
+    inset 5px 5px 12px var(--in-l);
+}
+.pit{
+  background:var(--bg);
+  border-radius:20px;
+  box-shadow:
+    inset 5px 5px 10px var(--pit-d),
+    inset -5px -5px 10px var(--pit-l);
+}
+
+/* header */
+header{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+  padding:clamp(20px,4vw,36px);
+}
+.head-text{min-width:0;flex:1 1 320px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2rem,6.5vw,3.4rem);line-height:1.05;margin:0;
+  text-wrap:balance;
+}
+.lede{margin:0;color:var(--muted);max-width:52ch;font-weight:600}
+.head-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stat{
+  font-family:var(--f-display);font-weight:600;font-size:14px;
+  padding:10px 16px;border-radius:999px;color:var(--fg);
+}
+.stat b{color:var(--accent);font-weight:700}
+
+button{font:inherit;color:inherit;cursor:pointer;border:0}
+.btn{
+  background:var(--surface);
+  border-radius:999px;
+  font-family:var(--f-display);font-weight:600;font-size:14px;
+  padding:10px 18px;
+  box-shadow:
+    6px 6px 14px var(--sh-d),
+    -5px -5px 12px var(--sh-l),
+    inset -2px -2px 5px var(--in-d),
+    inset 2px 2px 5px var(--in-l);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active,.btn.done{
+  transform:none;
+  box-shadow:
+    inset 4px 4px 8px var(--pit-d),
+    inset -4px -4px 8px var(--pit-l);
+}
+.btn:focus-visible,.dot:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* palette strip */
+.strip{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(8px,2vw,18px);
+  padding:clamp(14px,3vw,24px);
+}
+.dot{
+  display:block;height:clamp(52px,9vw,84px);border-radius:999px;
+  background:var(--c);
+  box-shadow:
+    inset 5px 5px 10px rgba(255,255,255,.38),
+    inset -6px -6px 12px rgba(0,0,0,.30),
+    0 12px 18px -8px rgba(40,20,70,.45);
+  transition:transform .2s ease;
+}
+.dot:hover{transform:translateY(-4px) scale(1.04)}
+
+/* cards */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));
+  gap:clamp(20px,3vw,32px);
+}
+.card{
+  display:flex;flex-direction:column;gap:18px;
+  padding:clamp(16px,2.5vw,22px);
+  scroll-margin-top:24px;
+  transition:transform .2s ease;
+}
+.card:hover{transform:translateY(-4px)}
+.swatch{
+  height:clamp(120px,22vw,160px);border-radius:26px;
+  background:var(--c);
+  box-shadow:
+    inset 10px 10px 20px rgba(255,255,255,.38),
+    inset -12px -12px 22px rgba(0,0,0,.30),
+    0 18px 26px -12px rgba(40,20,70,.50);
+}
+.title{display:flex;flex-direction:column;gap:8px;min-width:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.3rem;line-height:1.2;margin:0;text-wrap:balance}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:12.5px;font-weight:700;color:var(--muted);
+  padding:5px 12px;border-radius:999px;
+  background:var(--bg);
+  box-shadow:inset 2px 2px 5px var(--pit-d), inset -2px -2px 5px var(--pit-l);
+}
+.tag.use{color:var(--accent)}
+.note{margin:0;font-size:14px;color:var(--muted);font-weight:600}
+.formats{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.row{
+  display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:10px;
+  padding:8px 8px 8px 16px;
+}
+.k{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--accent)}
+.v{font-family:var(--f-mono);font-size:14px;overflow-wrap:anywhere;min-width:0}
+.row .btn{padding:7px 14px;font-size:13px}
+
+footer{
+  padding:20px clamp(18px,3vw,28px);
+  color:var(--muted);font-size:14px;font-weight:600;text-align:center;
+}
+.toast{
+  position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--accent);color:var(--accent-ink);
+  font-family:var(--f-display);font-weight:600;font-size:14px;
+  padding:12px 22px;border-radius:999px;
+  box-shadow:8px 8px 20px var(--sh-d);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:420px){
+  .row{grid-template-columns:42px minmax(0,1fr) auto;padding-left:12px}
+  .v{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+
+<div class="wrap">
+  <header class="clay">
+    <div class="head-text">
+      <span class="eyebrow">House color scheme</span>
+      <h1>Wall Color Palette</h1>
+      <p class="lede">Seven colors for the walls and roof. Each one is listed in HEX, RGB, HSL and CMYK. Tap Copy to take a value.</p>
+    </div>
+    <div class="head-tools">
+      <span class="stat pit"><b>7</b> colors</span>
+      <span class="stat pit"><b>4</b> formats</span>
+      <button class="btn" id="theme" type="button" aria-label="Switch light or dark theme">Theme</button>
+    </div>
+  </header>
+
+  <nav class="strip clay" id="strip" aria-label="All colors"></nav>
+
+  <main class="grid" id="grid"></main>
+
+  <footer class="clay">HEX and RGB come from your chosen colors. HSL and CMYK are converted from them, so a printed or mixed paint may look slightly different from the screen.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+var COLORS=[
+ {name:"Midnight Navy Blue",hex:"#061124",rgb:"6, 17, 36",hsl:"218, 71%, 8%",cmyk:"83, 53, 0, 86",use:"Main green-wall replacement",finish:"Matte exterior"},
+ {name:"Warm Off-White",hex:"#F3F0E8",rgb:"243, 240, 232",hsl:"44, 31%, 93%",cmyk:"0, 1, 5, 5",use:"Main pink-wall replacement",finish:"Soft matte"},
+ {name:"Terracotta Red",hex:"#A8433C",rgb:"168, 67, 60",hsl:"4, 47%, 45%",cmyk:"0, 60, 64, 34",use:"Existing roof tiles",finish:"Terracotta tile finish"},
+ {name:"Deep Royal Bangle Purple",hex:"#59156C",rgb:"89, 21, 108",hsl:"287, 67%, 25%",cmyk:"18, 81, 0, 58"},
+ {name:"Deep Teal Green",hex:"#1B796F",rgb:"27, 121, 111",hsl:"174, 64%, 29%",cmyk:"78, 0, 8, 53"},
+ {name:"Vibrant Leaf Green",hex:"#287D46",rgb:"40, 125, 70",hsl:"141, 52%, 32%",cmyk:"68, 0, 44, 51"},
+ {name:"Glowing Lavender White",hex:"#F8F5FC",rgb:"248, 245, 252",hsl:"266, 54%, 97%",cmyk:"2, 3, 0, 1",note:"A very light white with a subtle purple undertone."}
+];
+var FORMATS=[["HEX","hex",function(c){return c.hex}],["RGB","rgb",function(c){return "rgb("+c.rgb+")"}],["HSL","hsl",function(c){return "hsl("+c.hsl+")"}],["CMYK","cmyk",function(c){return "cmyk("+c.cmyk+")"}]];
+
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+
+var toastEl=document.getElementById("toast"),toastTimer;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){toastEl.classList.remove("show")},1600)}
+
+function fallbackCopy(text){
+  var t=document.createElement("textarea");t.value=text;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";
+  document.body.appendChild(t);t.select();
+  var ok=false;try{ok=document.execCommand("copy")}catch(e){}
+  document.body.removeChild(t);return ok;
+}
+function copy(text,btn,label){
+  function ok(){btn.textContent="Copied";btn.classList.add("done");toast(label+" copied");setTimeout(function(){btn.textContent="Copy";btn.classList.remove("done")},1400)}
+  function fail(){toast(fallbackCopy(text)?label+" copied":"Select the value and copy it")}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,function(){if(fallbackCopy(text))ok();else fail()})}
+  else if(fallbackCopy(text))ok();else fail();
+}
+
+var strip=document.getElementById("strip"),grid=document.getElementById("grid");
+COLORS.forEach(function(c,i){
+  var id="c"+(i+1);
+  var d=el("a","dot");d.href="#"+id;d.style.setProperty("--c",c.hex);d.setAttribute("aria-label",c.name+" "+c.hex);d.title=c.name;
+  strip.appendChild(d);
+
+  var card=el("article","card clay");card.id=id;
+  var sw=el("div","swatch");sw.style.setProperty("--c",c.hex);sw.setAttribute("role","img");sw.setAttribute("aria-label",c.name+" color swatch");
+  card.appendChild(sw);
+
+  var t=el("div","title");t.appendChild(el("h2",null,c.name));
+  if(c.use||c.finish){
+    var tags=el("div","tags");
+    if(c.use)tags.appendChild(el("span","tag use",c.use));
+    if(c.finish)tags.appendChild(el("span","tag",c.finish));
+    t.appendChild(tags);
+  }
+  if(c.note)t.appendChild(el("p","note",c.note));
+  card.appendChild(t);
+
+  var f=el("div","formats");
+  FORMATS.forEach(function(fm){
+    var row=el("div","row pit");
+    row.appendChild(el("span","k",fm[0]));
+    var val=fm[2](c);
+    row.appendChild(el("span","v",val));
+    var b=el("button","btn","Copy");b.type="button";b.setAttribute("aria-label","Copy "+fm[0]+" of "+c.name);
+    b.addEventListener("click",function(){copy(val,b,fm[0])});
+    row.appendChild(b);f.appendChild(row);
+  });
+  card.appendChild(f);grid.appendChild(card);
+});
+
+var root=document.documentElement,themeBtn=document.getElementById("theme");
+try{var saved=localStorage.getItem("palette-theme");if(saved==="dark"||saved==="light")root.setAttribute("data-theme",saved)}catch(e){}
+themeBtn.addEventListener("click",function(){
+  var cur=root.getAttribute("data-theme");
+  if(!cur)cur=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+  var next=cur==="dark"?"light":"dark";
+  root.setAttribute("data-theme",next);
+  try{localStorage.setItem("palette-theme",next)}catch(e){}
+});
+</script>
+
+</body></html>
